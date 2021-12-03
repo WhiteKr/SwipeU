@@ -19,7 +19,7 @@ class SplashActivity : AppCompatActivity() {
 
         val uid = FirebaseAuthUtils.getUid()
 
-        if (uid == null) {
+        if (uid == "null") {
 
             Handler().postDelayed({
                 val intent = Intent(this, IntroActivity::class.java)
