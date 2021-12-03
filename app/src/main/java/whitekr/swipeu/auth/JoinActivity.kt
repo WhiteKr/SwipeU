@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.ImageView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
@@ -31,6 +33,16 @@ class JoinActivity : AppCompatActivity() {
         setContentView(R.layout.activity_join)
 
         auth = Firebase.auth
+
+        val profileImage: ImageView = findViewById(R.id.imageArea)
+        val getAction = registerForActivityResult(
+            ActivityResultContracts.GetContent(),
+            profileImage::setImageURI
+        )
+
+        profileImage.setOnClickListener {
+            getAction.launch("image/*")
+        }
 
         val joinBtn: Button = findViewById(R.id.joinBtn)
         joinBtn.setOnClickListener {
