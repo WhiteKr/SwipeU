@@ -1,5 +1,6 @@
 package whitekr.swipeu.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -8,6 +9,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import whitekr.swipeu.MainActivity
 import whitekr.swipeu.R
 import whitekr.swipeu.utils.FirebaseAuthUtils
 import whitekr.swipeu.utils.FirebaseRef
@@ -53,8 +55,8 @@ class JoinActivity : AppCompatActivity() {
 
                         FirebaseRef.userInfoRef.child(uid).setValue(userModel)
 
-//                        val intent = Intent(this, MainActivity::class.java)
-//                        startActivity(intent)
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
 
                     } else {
                         // If sign in fails, display a message to the user.
