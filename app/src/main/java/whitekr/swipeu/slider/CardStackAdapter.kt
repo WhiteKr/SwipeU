@@ -26,8 +26,7 @@ class CardStackAdapter(
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         fun binding(data: String) {
-            
-        }
 
+        }
     }
 }

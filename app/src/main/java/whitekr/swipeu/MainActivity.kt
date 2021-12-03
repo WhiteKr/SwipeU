@@ -54,5 +54,4 @@ class MainActivity : AppCompatActivity() {
         cardStackView.adapter = cardStackAdapter
 
     }
-
 }
