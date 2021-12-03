@@ -1,12 +1,17 @@
 package whitekr.swipeu
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.CardStackView
 import com.yuyakaido.android.cardstackview.Direction
+import whitekr.swipeu.auth.IntroActivity
 import whitekr.swipeu.slider.CardStackAdapter
 
 class MainActivity : AppCompatActivity() {
@@ -17,6 +22,18 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val setting: ImageView = findViewById(R.id.settingIcon)
+        setting.setOnClickListener {
+
+            val auth = Firebase.auth
+            auth.signOut()
+
+            val intent = Intent(this, IntroActivity::class.java)
+            startActivity(intent)
+            finish()
+
+        }
 
         val cardStackView: CardStackView = findViewById(R.id.cardStackView)
 
