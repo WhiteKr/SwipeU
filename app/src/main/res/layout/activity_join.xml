@@ -75,6 +75,7 @@
 				android:background="@color/white">
 
 				<com.google.android.material.textfield.TextInputEditText
+					android:id="@+id/nameArea"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:hint="Name" />
@@ -88,6 +89,7 @@
 				android:background="@color/white">
 
 				<com.google.android.material.textfield.TextInputEditText
+					android:id="@+id/genderArea"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:hint="Gender(M/W)" />
@@ -101,6 +103,7 @@
 				android:background="@color/white">
 
 				<com.google.android.material.textfield.TextInputEditText
+					android:id="@+id/cityArea"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:hint="City" />
@@ -114,6 +117,7 @@
 				android:background="@color/white">
 
 				<com.google.android.material.textfield.TextInputEditText
+					android:id="@+id/ageArea"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:hint="Age" />

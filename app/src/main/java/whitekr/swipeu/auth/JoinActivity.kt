@@ -1,6 +1,5 @@
 package whitekr.swipeu.auth
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -9,15 +8,21 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import whitekr.swipeu.MainActivity
 import whitekr.swipeu.R
 import whitekr.swipeu.utils.FirebaseAuthUtils
+import whitekr.swipeu.utils.FirebaseRef
 
 class JoinActivity : AppCompatActivity() {
 
     private val TAG: String = "JoinActivity"
 
     private lateinit var auth: FirebaseAuth
+
+    private var name = ""
+    private var gender = ""
+    private var city = ""
+    private var age = ""
+    private var uid = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,19 +36,25 @@ class JoinActivity : AppCompatActivity() {
             val email: TextInputEditText = findViewById(R.id.emailArea)
             val pwd: TextInputEditText = findViewById(R.id.pwdArea)
 
-//            Log.d(TAG, email.text.toString())
-//            Log.d(TAG, pwd.text.toString())
+            name = findViewById<TextInputEditText>(R.id.nameArea).text.toString()
+            gender = findViewById<TextInputEditText>(R.id.genderArea).text.toString()
+            city = findViewById<TextInputEditText>(R.id.cityArea).text.toString()
+            age = findViewById<TextInputEditText>(R.id.ageArea).text.toString()
 
             auth.createUserWithEmailAndPassword(email.text.toString(), pwd.text.toString())
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
-                        // Sign in success, update UI with the signed-in user's information
-                        Log.d(TAG, "createUserWithEmail:success")
-                        val uid: String = FirebaseAuthUtils.getUid()
-                        Log.d(TAG, uid)
 
-                        val intent = Intent(this, MainActivity::class.java)
-                        startActivity(intent)
+                        uid = FirebaseAuthUtils.getUid()
+
+                        val userModel = UserDataModel(
+                            uid, name, gender, city, age
+                        )
+
+                        FirebaseRef.userInfoRef.child(uid).setValue(userModel)
+
+//                        val intent = Intent(this, MainActivity::class.java)
+//                        startActivity(intent)
 
                     } else {
                         // If sign in fails, display a message to the user.
