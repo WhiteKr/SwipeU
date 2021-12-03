@@ -10,6 +10,9 @@
 		android:supportsRtl="true"
 		android:theme="@style/Theme.SwipeU">
 		<activity
+			android:name=".auth.LoginActivity"
+			android:exported="false" />
+		<activity
 			android:name=".auth.JoinActivity"
 			android:exported="false" />
 		<activity
