@@ -19,14 +19,18 @@
 		<Button
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:layout_margin="5dp"
 			android:background="@color/mainColor"
-			android:text="Join" />
+			android:text="Join"
+			android:textColor="@color/white" />
 
 		<Button
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:layout_margin="5dp"
 			android:background="@color/mainColor"
-			android:text="Login" />
+			android:text="Login"
+			android:textColor="@color/white" />
 
 	</LinearLayout>
 
