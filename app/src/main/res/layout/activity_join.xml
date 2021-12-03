@@ -28,6 +28,7 @@
 				android:background="@color/white">
 
 				<com.google.android.material.textfield.TextInputEditText
+					android:id="@+id/emailArea"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:hint="Email" />
@@ -43,6 +44,7 @@
 				app:counterMaxLength="10">
 
 				<com.google.android.material.textfield.TextInputEditText
+					android:id="@+id/pwdArea"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:hint="Password" />
@@ -117,6 +119,7 @@
 			</com.google.android.material.textfield.TextInputLayout>
 
 			<Button
+				android:id="@+id/joinBtn"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:layout_margin="5dp"
