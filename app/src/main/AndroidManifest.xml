@@ -12,6 +12,12 @@
 		android:supportsRtl="true"
 		android:theme="@style/Theme.SwipeU">
 		<activity
+			android:name=".setting.SettingActivity"
+			android:exported="false" />
+		<activity
+			android:name=".setting.MyPageActivity"
+			android:exported="false" />
+		<activity
 			android:name=".auth.LoginActivity"
 			android:exported="false" />
 		<activity

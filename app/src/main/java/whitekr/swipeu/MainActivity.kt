@@ -6,17 +6,15 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
-import com.google.firebase.ktx.Firebase
 import com.yuyakaido.android.cardstackview.CardStackLayoutManager
 import com.yuyakaido.android.cardstackview.CardStackListener
 import com.yuyakaido.android.cardstackview.CardStackView
 import com.yuyakaido.android.cardstackview.Direction
-import whitekr.swipeu.auth.IntroActivity
 import whitekr.swipeu.auth.UserDataModel
+import whitekr.swipeu.setting.SettingActivity
 import whitekr.swipeu.slider.CardStackAdapter
 import whitekr.swipeu.utils.FirebaseRef
 
@@ -36,12 +34,11 @@ class MainActivity : AppCompatActivity() {
         val setting: ImageView = findViewById(R.id.settingIcon)
         setting.setOnClickListener {
 
-            val auth = Firebase.auth
-            auth.signOut()
+//            val auth = Firebase.auth
+//            auth.signOut()
 
-            val intent = Intent(this, IntroActivity::class.java)
+            val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
-            finish()
 
         }
 
