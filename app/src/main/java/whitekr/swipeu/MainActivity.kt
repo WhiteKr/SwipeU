@@ -34,9 +34,6 @@ class MainActivity : AppCompatActivity() {
         val setting: ImageView = findViewById(R.id.settingIcon)
         setting.setOnClickListener {
 
-//            val auth = Firebase.auth
-//            auth.signOut()
-
             val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
 
@@ -100,5 +97,4 @@ class MainActivity : AppCompatActivity() {
         FirebaseRef.userInfoRef.addValueEventListener(postListener)
 
     }
-
 }
