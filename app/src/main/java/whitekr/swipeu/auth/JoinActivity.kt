@@ -1,6 +1,8 @@
 package whitekr.swipeu.auth
 
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -11,10 +13,12 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import whitekr.swipeu.MainActivity
 import whitekr.swipeu.R
 import whitekr.swipeu.utils.FirebaseAuthUtils
 import whitekr.swipeu.utils.FirebaseRef
+import java.io.ByteArrayOutputStream
 
 class JoinActivity : AppCompatActivity() {
 
@@ -28,13 +32,16 @@ class JoinActivity : AppCompatActivity() {
     private var age = ""
     private var uid = ""
 
+    lateinit var profileImage: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_join)
 
         auth = Firebase.auth
 
-        val profileImage: ImageView = findViewById(R.id.imageArea)
+        profileImage = findViewById(R.id.imageArea)
+
         val getAction = registerForActivityResult(
             ActivityResultContracts.GetContent(),
             profileImage::setImageURI
@@ -66,16 +73,39 @@ class JoinActivity : AppCompatActivity() {
                         )
 
                         FirebaseRef.userInfoRef.child(uid).setValue(userModel)
+                        uploadImage(uid)
 
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
 
                     } else {
-                        // If sign in fails, display a message to the user.
+
                         Log.w(TAG, "createUserWithEmail:failure", task.exception)
 
                     }
                 }
+        }
+    }
+
+    private fun uploadImage(uid: String) {
+
+        val storage = Firebase.storage
+        val storageRef = storage.reference.child("$uid.png")
+
+        // Get the data from an ImageView as bytes
+        profileImage.isDrawingCacheEnabled = true
+        profileImage.buildDrawingCache()
+        val bitmap = (profileImage.drawable as BitmapDrawable).bitmap
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        val data = baos.toByteArray()
+
+        val uploadTask = storageRef.putBytes(data)
+        uploadTask.addOnFailureListener {
+            // Handle unsuccessful uploads
+        }.addOnSuccessListener { taskSnapshot ->
+            // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+            // ...
         }
     }
 }
